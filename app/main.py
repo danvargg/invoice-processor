@@ -1,14 +1,13 @@
 import csv
 import io
 import logging
-from fastapi import FastAPI, UploadFile, File
-from fastapi.responses import JSONResponse, StreamingResponse
 from typing import List
 
-# Import local modules
-from app.config import OPENAI_API_KEY  # ensures openai.api_key is set
-from app.services.pdf_extractor import extract_text_from_pdf
+from fastapi import FastAPI, UploadFile, File
+from fastapi.responses import JSONResponse, StreamingResponse
+
 from app.services.openai_extractor import extract_invoice_data
+from app.services.pdf_extractor import extract_text_from_pdf
 from app.services.tax_calculator import compute_taxes
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
@@ -32,13 +31,10 @@ async def process_invoices(files: List[UploadFile] = File(...)):
 
     for file in files:
         try:
-            # Step 1: Extract PDF text
-            text = extract_text_from_pdf(file)
+            text = extract_text_from_pdf(file)  # FIXME: duplicate
 
-            # Step 2: Extract structured data via OpenAI
             extracted_data = extract_invoice_data(text)
 
-            # Step 3: Convert to float, handle missing
             total = float(extracted_data.get("total", 0.0))
             gst = extracted_data.get("federal_tax")
             qst = extracted_data.get("provincial_tax")
@@ -48,7 +44,6 @@ async def process_invoices(files: List[UploadFile] = File(...)):
                 gst = computed_gst if gst is None else float(gst)
                 qst = computed_qst if qst is None else float(qst)
             else:
-                # If both taxes are provided, compute subtotal as total minus the taxes
                 subtotal = total - float(gst) - float(qst)
 
             results.append({

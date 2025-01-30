@@ -1,10 +1,8 @@
-import os
 import json
-import openai
 from typing import Dict
 
-# Make sure to set openai.api_key somewhere (e.g., in config.py or here).
-# openai.api_key = os.getenv("OPENAI_API_KEY")
+import openai
+
 
 def extract_invoice_data(text: str) -> Dict:
     """
@@ -26,8 +24,7 @@ def extract_invoice_data(text: str) -> Dict:
                 },
                 {
                     "role": "user",
-                    "content": f"Extract data from this invoice:\n{text[:3000]}..."
-                    # truncated for token limits, as you do in your Streamlit
+                    "content": f"Extract data from this invoice:\n{text}..."
                 }
             ],
         )
