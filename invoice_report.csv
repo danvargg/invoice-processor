@@ -1,0 +1,5 @@
+file_name,date,supplier,amount_subtotal,federal_tax_gst,provincial_tax_qst,total
+BellPDF.pdf,2024-12-24,BELL CANADA,56.04,2.81,5.56,64.41
+Invoice-1A6E8C27-0014.pdf,2025-01-23,"OpenAI, LLC",20.0,1.0,2.0,23.0
+Invoice-9A213D7D-0001.pdf,2024-09-22,Montreal Therapy Centre,142.89,7.14,14.97,165.0
+Invoice-E85DF794-0002.pdf,2024-09-03,Anthropic,25.46,1.4,2.67,29.4

@@ -1,5 +1,6 @@
 from PyPDF2 import PdfReader
 
+
 def extract_text_from_pdf(pdf_file) -> str:
     """
     Extract text from a PDF file uploaded via FastAPI.

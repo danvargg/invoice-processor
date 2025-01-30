@@ -1,3 +1,6 @@
+import logging
+from typing import Any, Dict
+
 from fastapi import UploadFile
 
 from app.services.openai_extractor import extract_invoice_data
@@ -9,6 +12,7 @@ def process_invoice_file(file: UploadFile) -> Dict[str, Any]:
     try:
         text = extract_text_from_pdf(file)
         extracted_data = extract_invoice_data(text)
+        print(extracted_data)
 
         total = float(extracted_data.get("total", 0.0))
         gst = extracted_data.get("federal_tax")
