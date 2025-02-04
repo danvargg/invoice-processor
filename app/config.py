@@ -14,7 +14,7 @@ MY_API_KEY = os.getenv("MY_API_KEY")
 if not MY_API_KEY:
     raise ValueError("Missing MY_API_KEY environment variable.")
 
-api_key_header = APIKeyHeader(name="X-API-Key", auto_error=False)  # TODO: rename api key name
+api_key_header = APIKeyHeader(name="X-API-Key", auto_error=False)
 
 
 def verify_api_key(api_key: str = Depends(api_key_header)):
