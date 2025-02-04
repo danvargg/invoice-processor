@@ -9,7 +9,6 @@ load_dotenv()
 
 # Define the API endpoints
 json_endpoint = "http://localhost:8000/invoices/"
-# csv_endpoint = "http://localhost:8000/invoices/csv/"
 
 # Define the directory containing the invoice files
 invoices_dir = "./app/tests/invoices"
@@ -29,21 +28,10 @@ headers = {
     "X-API-Key": os.getenv("MY_API_KEY")
 }
 
-# print(headers)
-
-# Send request to the JSON endpoint
 response_json = requests.post(json_endpoint, files=files, headers=headers)
 if response_json.status_code == 200:
     print("JSON Response:")
     print(response_json.json())
 else:
     print(f"Failed to get JSON response: {response_json.status_code}")
-#
-# # Send request to the CSV endpoint
-# response_csv = requests.post(csv_endpoint, files=files, headers=headers)
-# if response_csv.status_code == 200:
-#     with open("invoice_report.csv", "w") as f:
-#         f.write(response_csv.text)
-#     print("CSV response saved to invoice_report.csv")
-# else:
-#     print(f"Failed to get CSV response: {response_csv.status_code}")
+

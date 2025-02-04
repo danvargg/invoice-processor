@@ -29,6 +29,8 @@ def process_invoice_file(file: UploadFile) -> Dict[str, Any]:
             "file_name": file.filename,
             "date": extracted_data.get("date", "N/A"),
             "supplier": extracted_data.get("supplier", "N/A"),
+            "category": extracted_data.get("category", "N/A"),
+            "description": extracted_data.get("description", "N/A"),
             "amount_subtotal": round(subtotal, 2),
             "federal_tax_gst": round(float(gst), 2),
             "provincial_tax_qst": round(float(qst), 2),
