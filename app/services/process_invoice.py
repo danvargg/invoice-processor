@@ -6,11 +6,13 @@ from fastapi import UploadFile
 from app.services.openai_extractor import extract_invoice_data
 from app.services.pdf_extractor import extract_text_from_pdf
 from app.services.tax_calculator import compute_taxes
+from app.models.invoice import sanitize_text
 
 
 def process_invoice_file(file: UploadFile) -> Dict[str, Any]:
     try:
         text = extract_text_from_pdf(file)
+        # sanitized_text = sanitize_text(text)  # TODO: implement
         extracted_data = extract_invoice_data(text)
         print(extracted_data)
 
