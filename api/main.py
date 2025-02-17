@@ -4,10 +4,10 @@ from typing import List
 
 from fastapi import FastAPI, UploadFile, File, Depends
 from fastapi.responses import JSONResponse
-from mangum import Mangum
+# from mangum import Mangum
 
-from app.config import verify_api_key
-from app.services.process_invoice import process_invoice_file
+from api.config import verify_api_key
+from api.services.process_invoice import process_invoice_file
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 
@@ -30,6 +30,7 @@ async def process_invoices(files: List[UploadFile] = File(...)):
     Returns a JSON response with the parsed data for each file.
     """
     results = [process_invoice_file(file) for file in files]
+    print(results)
 
     csv_filename = "invoice_report.csv"
     with open(csv_filename, "w", newline="") as csvfile:
@@ -40,4 +41,4 @@ async def process_invoices(files: List[UploadFile] = File(...)):
     return JSONResponse(content={"invoices": results})  # TODO: send with json
 
 
-handler = Mangum(app)
+# handler = Mangum(app)
