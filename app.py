@@ -1,12 +1,10 @@
-import streamlit as st
 import pandas as pd
 import requests
-from io import BytesIO
+import streamlit as st
 
-# Set page configuration
 st.set_page_config(layout="wide")
 
-# Function to process invoices
+
 def process_invoices(files):
     url = "http://127.0.0.1:8000/invoices/"
     headers = {"x-api-key": "supersecretapikey"}
@@ -19,7 +17,7 @@ def process_invoices(files):
         st.error(f"Failed to process invoices: {response.status_code} - {response.text}")
         return []
 
-# Streamlit UI
+
 st.title("Invoice Processor")
 
 uploaded_files = st.file_uploader("Choose PDF files", type="pdf", accept_multiple_files=True)
