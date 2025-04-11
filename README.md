@@ -9,7 +9,7 @@
 
 An invoice processing system designed to upload, process, and extract structured data from PDF invoices.
 
-<img width=30% height=30%  src="https://github.com/danvargg/invoice-processor/blob/main/img/ui.png">
+<img width=100% height=100%  src="https://github.com/danvargg/invoice-processor/blob/main/img/ui.png">
 
 ## Business Problem
 
