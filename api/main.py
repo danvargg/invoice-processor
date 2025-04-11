@@ -7,8 +7,6 @@ from fastapi.responses import JSONResponse
 from api.config import verify_api_key
 from api.services.process_invoice import process_invoice_file
 
-# from mangum import Mangum
-
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 
 app = FastAPI(
@@ -32,5 +30,4 @@ async def process_invoices(files: List[UploadFile] = File(...)):
     results = [process_invoice_file(file) for file in files]
     return JSONResponse(content={"invoices": results})  # TODO: send with json
 
-# handler = Mangum(app)
 # uvicorn api.main:app --reload
