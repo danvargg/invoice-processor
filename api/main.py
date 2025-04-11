@@ -33,3 +33,4 @@ async def process_invoices(files: List[UploadFile] = File(...)):
     return JSONResponse(content={"invoices": results})  # TODO: send with json
 
 # handler = Mangum(app)
+# uvicorn api.main:app --reload
